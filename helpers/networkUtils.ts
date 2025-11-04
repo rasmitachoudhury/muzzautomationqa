@@ -1,3 +1,4 @@
+import { driver } from '@wdio/globals';
 export class NetworkUtils {
   static async setOffline() {
     try {
