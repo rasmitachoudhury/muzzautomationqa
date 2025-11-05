@@ -1,74 +1,144 @@
-Muzz Mobile Automation Framework
-Overview
+🧪 Muzz QA Automation Framework
+📋 Overview
 
-This repository contains a mobile test automation framework built for the Muzz QA Technical Test, designed to automate login and profile discovery scenarios on the Muzz dating app.
+This repository contains an end-to-end mobile automation framework built using WebdriverIO, Appium, and TypeScript.
+It automates core Muzz app scenarios like login, profile discovery, and liking profiles.
+The framework follows the Page Object Model (POM) for maintainability and readability.
 
-The framework is implemented using:
-
-Appium
-
-WebdriverIO
-
-TypeScript
-
-Mocha & Chai
-
-Allure Reporting
-
-Project Structure
-muzzautomationqa/
-├─ src/
-│   ├─ pages/              # Page Object files
-│   ├─ helpers/            # Common helpers or data
-│   └─ utils/              # App utility functions
+🏗️ Tech Stack
+Tool	Purpose
+WebdriverIO (v9)	Test automation framework
+Appium	Mobile automation for Android
+TypeScript	Type safety and better maintainability
+Mocha	Test runner
+Chai	Assertion library
+WDIO Appium Service	Simplifies Appium server startup
+GitHub Actions	CI/CD automation
+📂 Project Structure
+MUZZ-QA-APPIUMTEST/
 │
-├─ tests/                  # Test cases
-│   ├─ login.test.ts
-│   └─ discover.test.ts
+├── .github/workflows/
+│   └── android-tests.yml         # CI workflow for GitHub Actions
 │
-├─ docs/                   # Documentation
-│   ├─ why-framework-required.md
-│   ├─ framework-architecture.md
-│   ├─ manual-test-cases.md
-│   └─ bug-report.md
+├── docs/
+│   ├── Framework_Documentation.docx
+│   └── Framework_Documentation.pdf
 │
-├─ wdio.conf.ts            # WebdriverIO configuration
-├─ package.json
-├─ tsconfig.json
-└─ README.md
+├── helpers/
+│   ├── testdata.ts               # Test data (user credentials)
+│   └── utils.ts                  # Reusable helper methods
+│
+├── tests/
+│   ├── pages/                    # Page Object Model classes
+│   │   ├── BasePage.ts
+│   │   ├── LoginPage.ts
+│   │   ├── DiscoverPage.ts
+│   │   └── ProfileCard.ts
+│   │
+│   ├── specs/                    # E2E Test specs
+│   │   ├── login.e2e.ts
+│   │   └── profile.e2e.ts
+│   │
+│   └── types/
+│       └── global.d.ts           # Custom WebdriverIO type definitions
+│
+├── package.json
+├── tsconfig.json
+├── wdio.conf.ts
+└── README.md
 
-Installation
-Prerequisites
+⚙️ Setup Instructions
+1️⃣ Prerequisites
 
-Node.js (>= 18)
+Node.js ≥ 18
 
-Appium Server 2.x
+Java JDK ≥ 11
 
-Android Emulator or real device
+Android SDK
 
-Java SDK (for Appium)
+Appium Server (npm install -g appium)
 
-Git
+Emulator or real Android device configured
 
-Setup Commands
-git clone https://github.com/rasmitachoudhury/muzzautomationqa.git
-cd muzzautomationqa
+2️⃣ Install Dependencies
 npm install
 
-Running the Tests
-Start Appium Server
-appium
+3️⃣ Configure App Path
 
-Execute Tests
+Edit your wdio.conf.ts file:
+
+'appium:app': '/path/to/your/muzz.apk'
+
+4️⃣ Run the Tests
 npx wdio run wdio.conf.ts
 
-Generate Allure Report
-allure serve allure-results
+5️⃣ Run Tests in CI (GitHub Actions)
 
-Why This Stack?
-Tool	Reason
-Appium	Cross-platform mobile automation
-WebdriverIO	Simplifies integration with Appium and Mocha
-TypeScript	Static typing and IDE support
-Mocha + Chai	Readable and structured test definitions
-Allure	Clear and professional reporting
+GitHub Actions will automatically trigger mobile tests on push or PR.
+You can find the workflow file at:
+
+.github/workflows/android-tests.yml
+
+🧠 Key Features
+
+✅ Page Object Model (POM) for maintainability
+
+🔄 Reusable BasePage with common actions
+
+🌍 Supports multiple locales (en, fr, etc.)
+
+📱 Appium integrated with WebdriverIO
+
+📊 Spec reporter for readable test results
+
+🚀 CI-ready (GitHub Actions pipeline)
+
+🧩 Example Test Scenarios
+Login Tests
+
+Invalid login → show error messages
+
+Valid login → navigate to Discover screen
+
+Auto-login → skip login on next app launch
+
+Discover Tests
+
+Profiles load correctly
+
+Like/Pass actions update counter
+
+“Failed to load profiles” message on network error
+
+🧾 Example Command Outputs
+
+Run all tests:
+
+npx wdio run wdio.conf.ts
+
+
+Output:
+
+✔ Login screen loaded successfully
+✔ User logged in successfully
+✔ Profiles displayed
+✔ Liked counter updated correctly
+
+💡 Why This Framework?
+
+WebdriverIO gives unified syntax for web + mobile testing
+
+Appium ensures cross-device & platform support
+
+TypeScript adds compile-time safety and scalability
+
+POM architecture improves reusability and reduces maintenance
+
+CI integration makes it easy to run on every PR or build
+
+📄 Documentation
+
+Detailed framework explanation is available in:
+
+/docs/Framework_Documentation.docx  
+/docs/Framework_Documentation.pdf
