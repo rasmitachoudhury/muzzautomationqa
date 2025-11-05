@@ -1,14 +1,15 @@
 import { driver } from '@wdio/globals';
+
 export class NetworkUtils {
   static async setOffline() {
     try {
-      await driver.execute('mobile: shell', {
+      await (driver as any).execute('mobile: shell', {
         command: 'svc',
-        args: ['wifi', 'disable']
+        args: ['wifi', 'disable'],
       });
-      await driver.execute('mobile: shell', {
+      await (driver as any).execute('mobile: shell', {
         command: 'svc',
-        args: ['data', 'disable']
+        args: ['data', 'disable'],
       });
     } catch (err) {
       console.warn('Unable to set offline mode:', err);
@@ -17,13 +18,13 @@ export class NetworkUtils {
 
   static async setOnline() {
     try {
-      await driver.execute('mobile: shell', {
+      await (driver as any).execute('mobile: shell', {
         command: 'svc',
-        args: ['wifi', 'enable']
+        args: ['wifi', 'enable'],
       });
-      await driver.execute('mobile: shell', {
+      await (driver as any).execute('mobile: shell', {
         command: 'svc',
-        args: ['data', 'enable']
+        args: ['data', 'enable'],
       });
     } catch (err) {
       console.warn('Unable to set online mode:', err);

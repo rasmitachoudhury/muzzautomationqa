@@ -1,4 +1,5 @@
-import { $ } from '@wdio/globals';
+import { $ ,$$} from '@wdio/globals'
+
 
 export default class ProfileCard {
   cardByIndex(index: number) {
@@ -6,14 +7,14 @@ export default class ProfileCard {
   }
 
   likeButton(cardEl: WebdriverIO.Element) {
-    return cardEl.$('~btn_like');
+    return (cardEl as any).$('~btn_like');
   }
 
   passButton(cardEl: WebdriverIO.Element) {
-    return cardEl.$('~btn_pass');
+    return (cardEl as any).$('~btn_pass');
   }
 
   name(cardEl: WebdriverIO.Element) {
-    return cardEl.$('~profile_name');
+    return (cardEl as any).$('~profile_name');
   }
 }
